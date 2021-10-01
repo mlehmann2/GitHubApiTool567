@@ -36,7 +36,7 @@ class TestGitHubAPI(unittest.TestCase):
         self.assertEqual(results[0], "Repo: bingbites Number of commits: 30")
         self.assertEqual(results[1], "Repo: BUMS Number of commits: 30")
         self.assertEqual(
-            results[2], "Repo: GitHubApiTool567 Number of commits: 2")
+            results[2], "Repo: GitHubApiTool567 Number of commits: 3")
         self.assertEqual(
             results[3], "Repo: hw-acceptance-unit-test-cycle Number of commits: 30")
         self.assertEqual(
