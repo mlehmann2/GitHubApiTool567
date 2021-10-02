@@ -15,10 +15,14 @@ def GitHubAPI(github_user_id):
     commit_data = []
     repos = requests.get("https://api.github.com/users/" +
                          github_user_id + "/repos").json()
-    for repo in repos:
-        commits = requests.get("https://api.github.com/repos/" +
-                               github_user_id + "/" + repo["name"] + "/commits").json()
-        commit_data.append(
-            "Repo: " + repo["name"] + " Number of commits: " + str(len(commits)))
+
+    try:
+        for repo in repos:
+            commits = requests.get("https://api.github.com/repos/" +
+                                   github_user_id + "/" + repo["name"] + "/commits").json()
+            commit_data.append(
+                "Repo: " + repo["name"] + " Number of commits: " + str(len(commits)))
+    except:
+        print("API limit exceeded for user.")
 
     return commit_data

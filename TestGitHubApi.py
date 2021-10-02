@@ -31,14 +31,14 @@ class TestGitHubAPI(unittest.TestCase):
     """
 
     def testNumRepos(self):
-        self.assertEqual(len(GitHubAPI('mjlehmann2')), 9)
+        self.assertEqual(len(GitHubAPI('mlehmann2')), 9)
 
     def testCorrectResults(self):
-        results = GitHubAPI('mjlehmann2')
+        results = GitHubAPI('mlehmann2')
         self.assertEqual(results[0], "Repo: bingbites Number of commits: 30")
         self.assertEqual(results[1], "Repo: BUMS Number of commits: 30")
         self.assertEqual(
-            results[2], "Repo: GitHubApiTool567 Number of commits: 4")
+            results[2], "Repo: GitHubApiTool567 Number of commits: 6")
         self.assertEqual(
             results[3], "Repo: hw-acceptance-unit-test-cycle Number of commits: 30")
         self.assertEqual(
