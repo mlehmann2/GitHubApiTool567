@@ -7,6 +7,8 @@ The primary goal of this file is to test the github API class
 """
 
 import unittest
+import requests
+import json
 
 from GitHubApi import GitHubAPI
 
@@ -16,7 +18,7 @@ class TestGitHubAPI(unittest.TestCase):
     Testing the git hub api tool
     Correct results for mlehmann2
 
-    Repo: bingbites Number of commits: 30
+    Repo: bingbites Number of commits: 2
     Repo: BUMS Number of commits: 30
     Repo: GitHubApiTool567 Number of commits: 1
     Repo: hw-acceptance-unit-test-cycle Number of commits: 30
