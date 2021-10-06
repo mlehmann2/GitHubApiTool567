@@ -7,9 +7,12 @@ The primary goal of this file is to test the github API class
 """
 
 import unittest
-import requests
-import json
 
+from unittest import mock
+
+from unittest.mock import patch
+
+import GitHubApi
 from GitHubApi import GitHubAPI
 
 
@@ -20,7 +23,7 @@ class TestGitHubAPI(unittest.TestCase):
 
     Repo: bingbites Number of commits: 2
     Repo: BUMS Number of commits: 30
-    Repo: GitHubApiTool567 Number of commits: 1
+    Repo: GitHubApiTool567 Number of commits: 8
     Repo: hw-acceptance-unit-test-cycle Number of commits: 30
     Repo: hw-sinatra-saas-hangperson Number of commits: 30
     Repo: HW00-HelloWorld Number of commits: 2
@@ -30,12 +33,35 @@ class TestGitHubAPI(unittest.TestCase):
 
     """
 
-    def testNumRepos(self):
-        self.assertEqual(len(GitHubAPI('mlehmann2')), 9)
+    @patch('GitHubApi.GitHubAPI')
+    def testNumRepos(self, mock_get):
+        mock_get.return_value = \
+            ['Repo: bingbites Number of commits: 2',
+             'Repo: BUMS Number of commits: 30',
+             'Repo: GitHubApiTool567 Number of commits: 8',
+             'Repo: hw-acceptance-unit-test-cycle Number of commits: 30',
+             'Repo: hw-sinatra-saas-hangperson Number of commits: 30',
+             'Repo: HW00-HelloWorld Number of commits: 2',
+             'Repo: HW01-Triangles Number of commits: 2',
+             'Repo: HW02a-LegacyTesting Number of commits: 11',
+             'Repo: Student-Repository Number of commits: 17']
 
-    def testCorrectResults(self):
-        results = GitHubAPI('mlehmann2')
-        self.assertEqual(results[0], "Repo: bingbites Number of commits: 30")
+        self.assertEqual(len(GitHubApi.GitHubAPI('mlehmann2')), 9)
+
+    @patch('GitHubApi.GitHubAPI')
+    def testCorrectResults(self, mock_get):
+        mock_get.return_value = \
+            ['Repo: bingbites Number of commits: 2',
+             'Repo: BUMS Number of commits: 30',
+             'Repo: GitHubApiTool567 Number of commits: 8',
+             'Repo: hw-acceptance-unit-test-cycle Number of commits: 30',
+             'Repo: hw-sinatra-saas-hangperson Number of commits: 30',
+             'Repo: HW00-HelloWorld Number of commits: 2',
+             'Repo: HW01-Triangles Number of commits: 2',
+             'Repo: HW02a-LegacyTesting Number of commits: 11',
+             'Repo: Student-Repository Number of commits: 17']
+        results = GitHubApi.GitHubAPI('mlehmann2')
+        self.assertEqual(results[0], "Repo: bingbites Number of commits: 2")
         self.assertEqual(results[1], "Repo: BUMS Number of commits: 30")
         self.assertEqual(
             results[2], "Repo: GitHubApiTool567 Number of commits: 8")

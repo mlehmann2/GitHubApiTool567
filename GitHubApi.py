@@ -13,11 +13,17 @@ def GitHubAPI(github_user_id):
     githubAPI
     """
     commit_data = []
+
+    print(github_user_id)
+
     repos = requests.get("https://api.github.com/users/" +
                          github_user_id + "/repos").json()
 
+    print(len(repos))
+
     try:
         for repo in repos:
+            print(repo['name'])
             commits = requests.get("https://api.github.com/repos/" +
                                    github_user_id + "/" + repo["name"] + "/commits").json()
             commit_data.append(
